@@ -24,18 +24,29 @@ function rollDice() {
     }
 }
 
+// Select images
+var img1 = document.querySelectorAll("img")[0];
+var img2 = document.querySelectorAll("img")[1];
 
-btn.addEventListener("click", rollDice);
+//  Mobile logic
+if (window.innerWidth < 1081) {
+    // Always default dice
+    img1.setAttribute("src", "images/dice6.png");
+    img2.setAttribute("src", "images/dice6.png");
 
+    btn.addEventListener("click", rollDice);
+}
 
-if (window.innerWidth > 1081) {
-
+//  Desktop logic
+else {
     if (!localStorage.getItem("visited")) {
-        // First time → show "Refresh Me"
+        // First time
+        img1.setAttribute("src", "images/dice6.png");
+        img2.setAttribute("src", "images/dice6.png");
+
         localStorage.setItem("visited", "true");
     } else {
-        // After refresh → roll dice
+        // After refresh
         rollDice();
     }
-
 }
